@@ -11,6 +11,7 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
+    var repCount = 5
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -28,4 +29,24 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    @IBAction func onStopPressed() {
+    }
+    @IBOutlet var repsLabel: WKInterfaceLabel!
+    @IBOutlet var timer: WKInterfaceTimer!
+    @IBAction func onSwipeLeft(_ sender: Any) {
+        if repCount > 0 {
+            repCount -= 1
+            updateRepCount()
+        }
+    }
+    @IBAction func onSwipeRight(_ sender: Any) {
+        if repCount < 5 {
+            repCount += 1
+            updateRepCount()
+        }
+    }
+    func updateRepCount() {
+        repsLabel.setText("\(repCount) reps")
+    }
+    
 }
